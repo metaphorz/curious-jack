@@ -1,0 +1,110 @@
+{
+  "imageName": "tern-on-beach",
+  "timestamp": "2026-02-19T22:13:20.047Z",
+  "params": {
+    "state": "Florida",
+    "level": "high",
+    "detail": "medium",
+    "thinking": false,
+    "location": "amelia island, florida"
+  },
+  "questions": [
+    {
+      "question": "What type of bird is this?",
+      "subjects": [
+        "Biology",
+        "Ornithology",
+        "Ecology",
+        "Environmental Science"
+      ],
+      "answer": "This is a **tern** — a sleek, agile coastal seabird — photographed on Amelia Island, Florida, in its **non-breeding (winter) plumage**. All three expert analyses agree on the following confirmed features:\n\n**Key Field Marks (all confirmed):**\n- **White forehead with a black patch behind the eye/nape** — characteristic of terns in non-breeding plumage, when the full black breeding cap recedes\n- **Orange-red bill with a darker tip**\n- **Red-orange legs**\n- **Gray upperparts (back and wings) with white underparts**\n- **Forked tail** with visible tail streamers extending past the folded wings\n- **Streamlined, aerodynamic body** adapted for hovering and plunge-diving for small fish\n\n**Species Identification — Forster's Tern vs. Common Tern:**\nThere is some expert disagreement on the exact species. The two leading candidates are the **Forster's Tern** (*Sterna forsteri*) and the **Common Tern** (*Sterna hirundo*), which look very similar in winter plumage. However, the most likely identification is a **Forster's Tern** for the following reasons:\n- The black on the head appears as a distinct **\"ear patch\" or mask behind the eye** rather than wrapping fully around the nape — this is a classic Forster's Tern non-breeding field mark.\n- **Forster's Terns are significantly more common** on Florida's Atlantic coast beaches during winter, while Common Terns are more often seen offshore or in migration.\n- The overall bill coloration and head pattern visible in the photo best match Forster's Tern.\n\n**Ecology and Habitat:**\nTerns are important predators in coastal food webs. They hunt by flying over shallow surf and **plunge-diving for small fish**, which is why they're commonly seen along the shoreline. Amelia Island, a barrier island on Florida's northeast coast, provides excellent wintering habitat with its estuaries, salt marshes, and beaches offering abundant food sources. Environmental scientists often use tern population health as an **indicator of overall marine ecosystem health** and fish abundance.\n\n**In summary:** This is most likely a **Forster's Tern** (*Sterna forsteri*) in non-breeding plumage, a common winter resident along Florida's coast, though a Common Tern cannot be entirely ruled out without closer examination of subtle plumage details.",
+      "standards": [
+        {
+          "subject": "Science",
+          "gradeBand": "9-12",
+          "code": "SC.912.L.15.6",
+          "description": "Discuss distinguishing characteristics of the domains and kingdoms of living organisms.",
+          "url": "https://www.cpalms.org/Public/PreviewStandard/Preview/2021"
+        },
+        {
+          "subject": "Science",
+          "gradeBand": "9-12",
+          "code": "SC.912.L.17.5",
+          "description": "Analyze how living things can be classified based on their observable characteristics and how classification systems are used to organize the diversity of living things.",
+          "url": "https://www.cpalms.org/Public/PreviewStandard/Preview/2031"
+        },
+        {
+          "subject": "Science",
+          "gradeBand": "9-12",
+          "code": "SC.912.L.17.8",
+          "description": "Recognize the consequences of the losses of biodiversity due to catastrophic events, climate changes, human activity, and the introduction of invasive, non-native species.",
+          "url": "https://www.cpalms.org/Public/PreviewStandard/Preview/2034"
+        }
+      ]
+    },
+    {
+      "question": "What is its typical feeding pattern or behavior?",
+      "subjects": [
+        "Biology",
+        "Ecology",
+        "Physics",
+        "Ornithology"
+      ],
+      "answer": "The bird in this photo is a **tern** — most likely a **Forster's Tern** or possibly a **Common Tern** — in non-breeding (winter) plumage. It's identifiable by its white body, gray wings, black cap restricted to behind the eye, orange-red bill, and reddish-orange legs. Its presence on Amelia Island is typical of terns that winter along Florida's Atlantic coast.\n\n**Feeding Behavior — Plunge Diving:**\nAll three sources agree that terns are highly specialized **plunge divers**. Their typical feeding pattern involves:\n\n1. **Aerial searching:** The tern flies continuously over shallow coastal waters at heights ranging from roughly 3 to 12 meters (10–40 feet), scanning for small fish or crustaceans near the surface. It may hover briefly to lock onto a target before striking.\n\n2. **Plunge diving:** Once prey is spotted, the tern folds its wings back and dives headfirst into the water at high speed. Its sharply pointed beak and streamlined body minimize drag, allowing it to pierce the water's surface with minimal splash. Unlike pelicans, terns make precise, shallow dives — typically only a few inches to about a foot below the surface — and immediately take flight again.\n\n3. **Diet:** Terns primarily eat small schooling fish such as minnows, anchovies, and silversides, along with small shrimp and crustaceans.\n\n4. **Tidal timing:** Feeding activity often increases during tidal changes (incoming or outgoing tides) and near breaking waves, because currents concentrate baitfish near the surface and in shallow water around inlets, sandbars, and the surf zone.\n\n5. **Group foraging:** Terns frequently forage in loose groups. When one bird dives, it can signal to others that prey is present, leading to group feeding events over schools of baitfish.\n\n**Physics of the Dive:**\nThe plunge dive is an excellent real-world example of **energy conversion**. As the tern dives from height, gravitational potential energy converts into kinetic energy, giving the bird enough speed to break through the water's surface tension. Its streamlined shape reduces both aerodynamic drag in the air and hydrodynamic drag in the water, maximizing efficiency.\n\n**What the Bird Is Doing Now:**\nThe tern in this photo appears to be **loafing** — resting on the open beach between feeding bouts. Terns commonly gather on sand to rest and preen, conserving energy until conditions like tide changes or schooling fish make hunting more productive.\n\n**Ecological Role:**\nAs secondary or tertiary consumers in the coastal food web, terns are considered excellent **bioindicators** of local fish populations and overall marine ecosystem health. Their feeding patterns are often linked to the behavior of larger predatory fish that drive baitfish toward the surface, highlighting the interconnectedness of Florida's coastal ecosystems.",
+      "standards": [
+        {
+          "subject": "Science",
+          "gradeBand": "9-12",
+          "code": "SC.912.L.17.5",
+          "description": "Analyze how living things interact with one another and with the non-living aspects of their environment through the study of ecosystems.",
+          "url": "https://www.cpalms.org/Public/PreviewStandard/Preview/2038"
+        },
+        {
+          "subject": "Science",
+          "gradeBand": "9-12",
+          "code": "SC.912.L.17.9",
+          "description": "Use a food web to identify and distinguish producers, consumers, and decomposers. Explain the pathway of energy transfer through trophic levels and the reduction of available energy at successive trophic levels.",
+          "url": "https://www.cpalms.org/Public/PreviewStandard/Preview/2042"
+        },
+        {
+          "subject": "Science",
+          "gradeBand": "9-12",
+          "code": "SC.912.P.10.1",
+          "description": "Differentiate among the various forms of energy and recognize that they can be transformed from one form to others.",
+          "url": "https://www.cpalms.org/Public/PreviewStandard/Preview/1918"
+        }
+      ]
+    },
+    {
+      "question": "Can you make a charcoal sketch of this?",
+      "subjects": [
+        "Art",
+        "Biology"
+      ],
+      "answer": "While I can't physically draw a charcoal sketch for you, I can give you a thorough guide to sketching this Amelia Island beach scene — a tern standing on wet sand with crashing surf behind it. This is an excellent subject for charcoal because the scene is nearly monochromatic, with strong contrasts between bright foam, gray sand, and the bird's dark markings.\n\n**Step 1 — Materials:**\nGather vine charcoal (for light, broad marks), compressed charcoal (for rich darks), a kneaded eraser (to lift highlights), a blending stump or tissue, and medium-tooth drawing paper.\n\n**Step 2 — Composition & Layout:**\nLightly block in the major shapes. Draw a low horizon line where the surf meets the sand — roughly in the upper third of your paper. Place the bird in the lower portion, slightly off-center. This follows the rule of thirds and creates the open, spacious feeling of the original photo.\n\n**Step 3 — Build the Bird with Basic Shapes:**\nStart with an oval for the body, a smaller circle for the head, a thin wedge for the beak, and two straight lines for the legs. The body should be about 2–3 head-lengths long. Pay close attention to the bird's sleek, streamlined, tapered shape — it's aerodynamic, not round like a pigeon. Keep the proportions tight and the silhouette elongated.\n\n**Step 4 — Map Your Values (Light to Dark):**\nCharcoal is all about value — the range from light to dark.\n- **Lightest areas (leave paper white or near-white):** The crashing wave foam and the bird's bright white breast.\n- **Mid-tones (light charcoal, blended):** The wet sand (slightly darker than dry sand because it reflects light differently) and the gray tones on the bird's wings and back.\n- **Darkest areas (compressed charcoal, heavy pressure):** The bird's black eye patch/cap, the tip of its beak, the eye, and the shadow beneath the bird's body.\n\n**Step 5 — Texture Techniques:**\n- **Sand:** Use the side of your charcoal in broad, smooth strokes and blend with tissue for a flat, even surface. Suggest scattered shells and pebbles with a few small dark dots — don't overdo it.\n- **Waves and Foam:** Try subtractive drawing here. Lightly shade the background water area with vine charcoal, then use a kneaded eraser to lift out the bright, chaotic shapes of the foam. Add short, jagged marks around the foam edges for texture.\n- **Bird Feathers:** Use short, directional strokes that follow the lay of the feathers for a smooth, sleek look.\n\n**Step 6 — Sharpen the Focal Point:**\nUse compressed charcoal to define the bird's darkest features: the black cap/mask behind the eye, the beak line, and the leg shadows. Lift small highlights on the bird's breast with a kneaded eraser. Keep the bird's edges slightly crisper than the background so it visually \"pops\" as the focal point.\n\n**Step 7 — Final Touches:**\nStep back and check your overall contrast. The scene should read clearly: bright surf at top, smooth sand in the middle, and a sharply rendered bird in the foreground. A light spray of fixative will prevent smudging.\n\n**Biology Note — Know Your Subject:**\nThis bird is a tern in non-breeding (winter) plumage, most likely a Forster's Tern or Common Tern — all three workers agree on the tern identification and the non-breeding plumage. The key field marks to capture accurately are: the black \"bandit mask\" or patch behind the eye (rather than a full black cap, which indicates winter plumage), the orange-red legs, and the sharp, pointed beak. These are coastal birds adapted for plunge-diving to catch fish, which explains their streamlined body shape. They are commonly seen on Florida's Atlantic coast beaches like Amelia Island. Capturing these specific anatomical details — the sleek body, pointed wings, and distinctive head markings — will make your sketch look like a real, identifiable species rather than a generic bird.",
+      "standards": [
+        {
+          "subject": "Visual Arts",
+          "gradeBand": "9-12",
+          "code": "VA.912.S.1.3",
+          "description": "Interpret and reflect on cultural and historical connections found in works of art.",
+          "url": "https://www.cpalms.org/Public/PreviewStandard/Preview/4894"
+        },
+        {
+          "subject": "Visual Arts",
+          "gradeBand": "9-12",
+          "code": "VA.912.S.3.4",
+          "description": "Demonstrate personal skills and techniques in the production of functional or non-functional works of art.",
+          "url": "https://www.cpalms.org/Public/PreviewStandard/Preview/4906"
+        },
+        {
+          "subject": "Visual Arts",
+          "gradeBand": "9-12",
+          "code": "VA.912.O.1.3",
+          "description": "Use technical proficiency and corrective measures to achieve a quality product.",
+          "url": "https://www.cpalms.org/Public/PreviewStandard/Preview/4870"
+        }
+      ]
+    }
+  ]
+}

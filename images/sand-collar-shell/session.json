@@ -1,0 +1,46 @@
+{
+  "imageName": "sand-collar-shell",
+  "timestamp": "2026-02-19T22:49:38.886Z",
+  "params": {
+    "state": "Florida",
+    "level": "high",
+    "detail": "medium",
+    "thinking": false,
+    "location": "amelia island beach"
+  },
+  "questions": [
+    {
+      "type": "text",
+      "question": "explain",
+      "subjects": [
+        "Marine Biology",
+        "Ecology",
+        "Geology"
+      ],
+      "answer": "What you've found on Amelia Island beach is a **moon snail sand collar** — the egg case of a moon snail, most likely the Shark Eye moon snail (*Neverita duplicata*), which is common along Florida's Atlantic coast.\n\n**What is it?**\nThis collar-shaped structure is a reproductive adaptation created by a female moon snail. When she's ready to lay eggs, she secretes a sticky, gelatinous mucus and mixes it with sand grains and thousands of microscopic eggs. She uses her large, fleshy foot to mold this mixture against the outside of her own shell, forming the distinctive collar or bowl shape you see here. Once it slips off her shell, it rests on the sea floor. When fresh, it feels rubbery — almost like wet plastic — but it becomes more brittle as it dries out.\n\n**Why is it shaped like this?**\nThe sand-and-mucus matrix serves as a protective nursery for the developing embryos. The incorporated sand camouflages the egg mass against the ocean floor, hiding it from predators, and the rubbery structure shields the eggs from the rough physical environment of the surf zone. After a few weeks, the eggs hatch into microscopic free-swimming larvae called veligers. Once the larvae are released, the collar's glue breaks down and it crumbles back into ordinary sand.\n\n**What about the moon snail itself?**\nMoon snails are predatory gastropods (marine snails). They feed on clams and other bivalves by drilling a perfectly round, beveled hole through the prey's shell using a specialized tongue-like structure called a radula, aided by an acid secretion. If you've ever found a shell on the beach with a small, neat circular hole in it, a moon snail was likely responsible!\n\n**What does it tell us about the local environment?**\nThe texture of the sand collar and the surrounding beach reveals information about Amelia Island's sediment. The beach contains a mix of fine quartz sand and shell fragments (bioclastic material). The darker grains visible inside and at the base of the collar are likely heavy mineral sands — containing iron-rich minerals like ilmenite and magnetite — which are common along northeast Florida's barrier island beaches and tend to concentrate in layers through wave sorting.",
+      "standards": [
+        {
+          "subject": "Science",
+          "gradeBand": "9-12",
+          "code": "SC.912.L.17.2",
+          "description": "Explain the general distribution of life in aquatic systems as a function of chemistry, geography, light, depth, salinity, and temperature.",
+          "url": "https://www.cpalms.org/Public/PreviewStandard/Preview/2038"
+        },
+        {
+          "subject": "Science",
+          "gradeBand": "9-12",
+          "code": "SC.912.L.15.8",
+          "description": "Describe the scientific explanations of the origin of life on Earth.",
+          "url": "https://www.cpalms.org/Public/PreviewStandard/Preview/2017"
+        },
+        {
+          "subject": "Science",
+          "gradeBand": "9-12",
+          "code": "SC.912.E.6.6",
+          "description": "Analyze past, present, and potential future consequences to the environment resulting from various energy production technologies.",
+          "url": "https://www.cpalms.org/Public/PreviewStandard/Preview/1982"
+        }
+      ]
+    }
+  ]
+}

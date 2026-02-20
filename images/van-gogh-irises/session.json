@@ -1,0 +1,69 @@
+{
+  "imageName": "van-gogh-irises",
+  "timestamp": "2026-02-20T17:42:15.775Z",
+  "params": {
+    "state": "National",
+    "level": "middle",
+    "detail": "low",
+    "thinking": false,
+    "location": "Getty"
+  },
+  "questions": [
+    {
+      "type": "text",
+      "question": "Explain what we are seeing and what are the parts in this image? Identify them.",
+      "subjects": [
+        "Art",
+        "Art History"
+      ],
+      "answer": "This image is the famous painting **\"Irises\"** by **Vincent van Gogh**, painted in 1889. It is housed at the **Getty Center** in Los Angeles. The painting shows a close-up view of a flower garden. Here are the key parts you can identify:\n\n• **Blue/purple irises** — The large, bright blue and purple flowers that fill most of the painting. Their petals are ruffled and curving.\n• **One white iris** — On the left side, a single white iris stands out among all the blue ones, making it a unique focal point.\n• **Green leaves** — The long, blade-shaped leaves of the irises fan outward in vibrant greens and teals.\n• **Stems** — The vertical green supports holding the flowers upright.\n• **Soil** — The textured, reddish-brown earth visible at the bottom and lower-left of the painting.\n• **Background flowers** — Smaller orange and yellow flowers (likely marigolds) and green foliage fill the background behind the irises.\n\nVan Gogh painted this while staying at a mental health asylum in Saint-Rémy-de-Provence, France. He used **thick, textured brushstrokes** (a technique called **impasto**) and bold, contrasting colors. This style is characteristic of **Post-Impressionism**. The painting has no visible sky, giving it a close-up, almost flat look that was influenced by **Japanese woodblock prints**, which Van Gogh admired.",
+      "standards": [
+        {
+          "subject": "Visual Arts",
+          "gradeBand": "6-8",
+          "code": "VA:Re7.1.8a",
+          "description": "Explain how a person's aesthetic choices are influenced by culture and environment and impact the visual image that one conveys to others.",
+          "url": "https://www.nationalartsstandards.org/"
+        },
+        {
+          "subject": "Visual Arts",
+          "gradeBand": "6-8",
+          "code": "VA:Re7.2.8a",
+          "description": "Compare and contrast contexts and media in which viewers encounter images that influence ideas, emotions, and actions.",
+          "url": "https://www.nationalartsstandards.org/"
+        },
+        {
+          "subject": "Visual Arts",
+          "gradeBand": "6-8",
+          "code": "VA:Re8.1.8a",
+          "description": "Interpret art by analyzing how the interaction of subject matter, characteristics of form and structure, use of media, art-making approaches, and relevant contextual information contributes to understanding messages or ideas and purposes.",
+          "url": "https://www.nationalartsstandards.org/"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "question": "why is there only one white flower?",
+      "subjects": [
+        "Art"
+      ],
+      "answer": "Great observation! This painting is *Irises* by Vincent van Gogh, painted in 1889 and now at the Getty Museum. All three of our sources agree: Van Gogh almost certainly included that single white iris on purpose to create **contrast**. That bright white flower stands out against all the blue ones and acts as a **focal point** — a spot your eye is naturally drawn to first. By placing one flower that's different from the rest, Van Gogh makes the painting more interesting and breaks up the repetition of blue. It's a common technique artists use to add visual surprise to a composition. It's also worth noting that in real life, a single flower in a group can sometimes be a different color due to natural variation, so the scene may reflect something Van Gogh actually saw in the garden — but he chose to emphasize it in his painting.",
+      "standards": [
+        {
+          "subject": "Visual Arts",
+          "gradeBand": "6-8",
+          "code": "VA:Re7.2.7a",
+          "description": "Analyze multiple ways that images influence specific audiences.",
+          "url": "https://www.nationalartsstandards.org/"
+        },
+        {
+          "subject": "Visual Arts",
+          "gradeBand": "6-8",
+          "code": "VA:Re8.1.7a",
+          "description": "Interpret art by analyzing art-making approaches, the characteristics of form and structure, relevant contextual information, subject matter, and use of media to identify ideas and mood conveyed.",
+          "url": "https://www.nationalartsstandards.org/"
+        }
+      ]
+    }
+  ]
+}

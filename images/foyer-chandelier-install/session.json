@@ -1,0 +1,39 @@
+{
+  "imageName": "foyer-chandelier-install",
+  "timestamp": "2026-02-19T22:47:04.970Z",
+  "params": {
+    "state": "Florida",
+    "level": "high",
+    "detail": "medium",
+    "thinking": false,
+    "location": ""
+  },
+  "questions": [
+    {
+      "type": "text",
+      "question": "what is happening in this image?",
+      "subjects": [
+        "Physics",
+        "Mathematics",
+        "Architecture"
+      ],
+      "answer": "In this image, a man is using a tape measure to measure the vertical distance from the floor to a hanging pendant light fixture in a grand residential foyer — likely to check clearance height, adjust the fixture's drop length, or prepare for a replacement.\n\nFrom a **physics** perspective, the hanging light fixture is a real-world example of static equilibrium. The fixture hangs from the ceiling by a chain, and the upward tension force in that chain exactly balances the downward gravitational force (weight) of the fixture. If these forces were not equal, the fixture would accelerate up or down. The chain length directly determines how far the light hangs below the ceiling.\n\nFrom a **mathematics** perspective, the person is taking a linear measurement perpendicular to the floor — essentially measuring the length of a vertical line segment. Keeping the tape measure perfectly straight and vertical is important for getting an accurate reading of the true shortest distance, rather than an angled (and therefore longer) measurement.\n\nFrom an **architecture** standpoint, this is a formal entryway typical of upscale Florida homes. Notable design features include a high paneled or coffered ceiling with decorative crown molding, an arched transom (fanlight) window above the front door that admits natural light, ornate wrought-iron glass sidelights flanking the entry, and classical columns supporting an archway into an adjacent room with decorative wallpaper. Measuring the fixture height helps ensure it is proportionate to the tall space and provides safe clearance for people walking underneath — a practical concern in entryways with high ceilings like this one.",
+      "standards": [
+        {
+          "subject": "Science",
+          "gradeBand": "9-12",
+          "code": "SC.912.P.12.3",
+          "description": "Interpret and apply Newton's three laws of motion.",
+          "url": "https://www.cpalms.org/Public/PreviewStandard/Preview/1901"
+        },
+        {
+          "subject": "Mathematics",
+          "gradeBand": "9-12",
+          "code": "MA.912.GR.1.1",
+          "description": "Solve mathematical and real-world problems involving the length and midpoint of a line segment.",
+          "url": "https://www.cpalms.org/Public/PreviewStandard/Preview/15400"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "imageName": "gray-sand-beach-shoreline",
+  "timestamp": "2026-02-20T17:48:26.126Z",
+  "params": {
+    "state": "National",
+    "level": "middle",
+    "detail": "low",
+    "thinking": true,
+    "location": "amelia island at beach"
+  },
+  "questions": [
+    {
+      "type": "text",
+      "question": "these are interesting lines - what are they?",
+      "subjects": [
+        "Earth Science",
+        "Geology",
+        "Oceanography"
+      ],
+      "answer": "Great observation! Those dark lines running along the beach are created by **waves and tides** interacting with the sand. As waves wash up the beach and then drain back toward the ocean, the moving water sorts the sand by weight. **Heavier, darker minerals** — like magnetite and ilmenite (iron-rich minerals) — are too heavy to wash back with the retreating water, so they get left behind in thin, dark lines. Meanwhile, the lighter-colored sand grains get carried away more easily.\n\nYou can also see small **drainage channels (called rills)** where the water carved shallow grooves as it flowed back to the sea, kind of like a tiny river system in the sand.\n\nEach line roughly marks where a wave or tide reached its highest point before pulling back, which is why you see multiple lines running roughly parallel to the shoreline. These are sometimes called **strand lines** or **tide lines**.\n\nAmelia Island's beaches are actually well known for having these dark heavy mineral deposits in the sand — so you picked a great spot to notice them!",
+      "standards": [
+        {
+          "subject": "Science",
+          "gradeBand": "6-8",
+          "code": "MS-ESS2-2",
+          "description": "Construct an explanation based on evidence for how geoscience processes have changed Earth's surface at varying time and spatial scales.",
+          "url": "https://www.nextgenscience.org/pe/ms-ess2-2-earths-systems"
+        },
+        {
+          "subject": "Science",
+          "gradeBand": "6-8",
+          "code": "MS-ESS2-3",
+          "description": "Analyze and interpret data on the distribution of fossils and rocks, continental shapes, and seafloor structures to provide evidence of the past plate motions. (Related: understanding how Earth's surface processes, including erosion and deposition, shape landforms.)",
+          "url": "https://www.nextgenscience.org/pe/ms-ess2-3-earths-systems"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "question": "Are these records of past tides?",
+      "subjects": [
+        "Earth Science",
+        "Oceanography"
+      ],
+      "answer": "Yes, those lines running along the beach are clues about recent tide levels! They are called **tide marks** or **strand lines**. Each line shows roughly where the water reached before it pulled back. The dark lines are made of small bits of shells, pebbles, and dark mineral sand that the waves carried in and left behind as the tide receded. The line closest to the water is usually the most recent, while lines farther up the beach may be from earlier, higher tides.\n\nHowever, these marks aren't a perfect or permanent record — wind, rain, and new waves can quickly erase or change them. So they're more like short-term snapshots of recent tides rather than a precise history of many past tides. On Amelia Island, the dark mineral sand (heavy minerals like magnetite) makes these strand lines especially easy to see!",
+      "standards": [
+        {
+          "subject": "Science",
+          "gradeBand": "6-8",
+          "code": "MS-ESS2-2",
+          "description": "Construct an explanation based on evidence for how geoscience processes have changed Earth's surface at varying time and spatial scales.",
+          "url": "https://www.nextgenscience.org/pe/ms-ess2-2-earths-systems"
+        },
+        {
+          "subject": "Science",
+          "gradeBand": "6-8",
+          "code": "MS-ESS2-3",
+          "description": "Analyze and interpret data on the distribution of fossils and rocks, continental shapes, and seafloor structures to provide evidence of the past plate motions.",
+          "url": "https://www.nextgenscience.org/pe/ms-ess2-3-earths-systems"
+        }
+      ]
+    }
+  ]
+}

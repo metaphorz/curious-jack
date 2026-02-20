@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self';">
+  <title>Curious Jack</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- API Key Modal -->
+  <div id="keyModal" class="modal hidden">
+    <div class="modal-box">
+      <h2>OpenRouter API Key Required</h2>
+      <p>No API key was found. Please enter your OpenRouter key to use Curious Jack.</p>
+      <input type="password" id="apiKeyInput" placeholder="sk-or-..." />
+      <button id="saveKeyBtn">Save &amp; Continue</button>
+    </div>
+  </div>
+
+  <header>
+    <img src="banner/curiousjack.jpg" alt="Curious Jack" class="header-logo" />
+  </header>
+
+  <main>
+    <!-- Parameters -->
+    <section class="params-bar">
+      <label>
+        State or National
+        <select id="paramState">
+          <option value="Alabama">Alabama</option>
+          <option value="Alaska">Alaska</option>
+          <option value="Arizona">Arizona</option>
+          <option value="Arkansas">Arkansas</option>
+          <option value="California">California</option>
+          <option value="Colorado">Colorado</option>
+          <option value="Connecticut">Connecticut</option>
+          <option value="Delaware">Delaware</option>
+          <option value="District of Columbia">District of Columbia</option>
+          <option value="Florida" selected>Florida</option>
+          <option value="Georgia">Georgia</option>
+          <option value="Hawaii">Hawaii</option>
+          <option value="Idaho">Idaho</option>
+          <option value="Illinois">Illinois</option>
+          <option value="Indiana">Indiana</option>
+          <option value="Iowa">Iowa</option>
+          <option value="Kansas">Kansas</option>
+          <option value="Kentucky">Kentucky</option>
+          <option value="Louisiana">Louisiana</option>
+          <option value="Maine">Maine</option>
+          <option value="Maryland">Maryland</option>
+          <option value="Massachusetts">Massachusetts</option>
+          <option value="Michigan">Michigan</option>
+          <option value="Minnesota">Minnesota</option>
+          <option value="Mississippi">Mississippi</option>
+          <option value="Missouri">Missouri</option>
+          <option value="Montana">Montana</option>
+          <option value="Nebraska">Nebraska</option>
+          <option value="Nevada">Nevada</option>
+          <option value="New Hampshire">New Hampshire</option>
+          <option value="New Jersey">New Jersey</option>
+          <option value="New Mexico">New Mexico</option>
+          <option value="New York">New York</option>
+          <option value="North Carolina">North Carolina</option>
+          <option value="North Dakota">North Dakota</option>
+          <option value="Ohio">Ohio</option>
+          <option value="Oklahoma">Oklahoma</option>
+          <option value="Oregon">Oregon</option>
+          <option value="Pennsylvania">Pennsylvania</option>
+          <option value="Rhode Island">Rhode Island</option>
+          <option value="South Carolina">South Carolina</option>
+          <option value="South Dakota">South Dakota</option>
+          <option value="Tennessee">Tennessee</option>
+          <option value="Texas">Texas</option>
+          <option value="Utah">Utah</option>
+          <option value="Vermont">Vermont</option>
+          <option value="Virginia">Virginia</option>
+          <option value="Washington">Washington</option>
+          <option value="West Virginia">West Virginia</option>
+          <option value="Wisconsin">Wisconsin</option>
+          <option value="Wyoming">Wyoming</option>
+          <option value="National">National (US)</option>
+        </select>
+      </label>
+      <label>
+        Level
+        <select id="paramLevel">
+          <option value="elementary">Elementary</option>
+          <option value="middle">Middle</option>
+          <option value="high" selected>High School</option>
+          <option value="advanced">Advanced / College</option>
+        </select>
+      </label>
+      <label>
+        Detail
+        <select id="paramDetail">
+          <option value="low">Low</option>
+          <option value="medium" selected>Medium</option>
+          <option value="high">High</option>
+        </select>
+      </label>
+      <label class="thinking-label">
+        <input type="checkbox" id="paramThinking" />
+        Extended Thinking Mode
+      </label>
+    </section>
+
+    <!-- Input columns -->
+    <section class="input-row">
+
+      <!-- Image upload -->
+      <div class="card" id="imageCard">
+        <h2>Image</h2>
+        <div id="dropZone" class="drop-zone">
+          <span>Drag &amp; drop an image here<br/>or</span>
+          <label class="file-btn">
+            Choose File
+            <input type="file" id="imageFile" accept="image/*" hidden />
+          </label>
+        </div>
+        <img id="imagePreview" class="hidden" alt="Preview" />
+        <input type="text" id="imageLocation" placeholder="Location or museum (optional)" />
+      </div>
+
+      <!-- Questions -->
+      <div class="card" id="questionsCard">
+        <h2>Questions</h2>
+        <textarea id="questionsInput" placeholder="Type or paste your questions here, one per line..."></textarea>
+        <div class="questions-file-row">
+          <label class="file-btn">
+            Load from file (.txt / .md)
+            <input type="file" id="questionsFile" accept=".txt,.md,text/plain,text/markdown" hidden />
+          </label>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Submit -->
+    <div class="submit-row">
+      <button id="submitBtn" class="primary-btn">Ask</button>
+    </div>
+
+    <!-- Progress -->
+    <div id="progressArea" class="hidden">
+      <div class="progress-label" id="progressLabel">Processing question 1 of N…</div>
+      <div class="progress-bar-track"><div id="progressBar" class="progress-bar-fill"></div></div>
+    </div>
+
+    <!-- Print-only image header (hidden in browser, shown in PDF/print) -->
+    <div id="printImageHeader" class="print-image-header">
+      <img src="banner/curiousjack.jpg" alt="Curious Jack" class="print-banner" />
+      <h1 class="print-title">Curious Jack</h1>
+      <p class="print-byline">fostered by Paul Fishwick and Claude Code</p>
+      <div class="print-params" id="printParams"></div>
+      <img id="printImage" alt="Subject image" />
+    </div>
+
+    <!-- Results -->
+    <section id="results" class="hidden">
+      <div class="results-header">
+        <h2>Results</h2>
+      </div>
+      <div id="resultsBody"></div>
+      <div id="exportRow" class="export-row hidden">
+        <button id="exportMd">Export Markdown</button>
+        <button id="exportPdf">Export PDF</button>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Curious Jack &mdash; Paul Fishwick and Claude Code</p>
+  </footer>
+
+  <!-- Image lightbox -->
+  <div id="imageLightbox" class="img-lightbox hidden">
+    <div class="lightbox-inner">
+      <img id="lightboxImg" alt="Full size preview" />
+      <p class="lightbox-caption">Take your time and look carefully at this. After a minute, think about questions you have.</p>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.2.4/purify.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
