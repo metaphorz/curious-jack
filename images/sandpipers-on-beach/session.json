@@ -1,0 +1,79 @@
+{
+  "imageName": "sandpipers-on-beach",
+  "timestamp": "2026-02-20T22:28:01.439Z",
+  "params": {
+    "state": "New York",
+    "level": "high",
+    "detail": "medium",
+    "thinking": false,
+    "location": "amelia island"
+  },
+  "questions": [
+    {
+      "type": "text",
+      "question": "what birds are these?",
+      "subjects": [
+        "Biology",
+        "Ecology",
+        "Ornithology"
+      ],
+      "answer": "These birds are **Sanderlings** (*Calidris alba*), a common small shorebird in the sandpiper family frequently seen on sandy ocean beaches like those on Amelia Island, Florida.\n\n**How to identify them from this photo:**\n- **Size and shape:** Small, plump, compact shorebirds with a rounded body and short neck.\n- **Plumage:** Pale frosty gray on their backs and bright white on their undersides — this is their **non-breeding (winter) plumage**. During the breeding season, their feathers molt into a mottled reddish-brown to help them camouflage in their Arctic nesting grounds.\n- **Bill and legs:** Short, straight **black bill** and **black legs**.\n- **Habitat and behavior:** They forage on open, flat wet sand near the surf line. Sanderlings are famous for their characteristic \"wave-chasing\" behavior — running rapidly down the beach after a receding wave to snatch up tiny invertebrates (sand crabs, amphipods, worms) and then scurrying back up to avoid the next incoming wave.\n\nYou can also spot a **seashell** (likely a scallop shell) on the right edge of the image, which confirms this is a typical sandy beach foraging habitat.\n\n**Ecological and geographic context:**\nSanderlings are **long-distance migrants** that breed on the high Arctic tundra and winter along coastlines throughout the Americas and beyond. They travel along the **Atlantic Flyway**, so the same species you see wintering on Amelia Island can also be observed on **New York's coastal beaches** (such as Long Island and Jamaica Bay) during spring and fall migration, and sometimes in winter. They are an excellent example of migratory shorebird ecology and coastal ecosystem dynamics.",
+      "standards": [
+        {
+          "subject": "Science (Living Environment)",
+          "gradeBand": "9-12",
+          "code": "NY LE Standard 1, Key Idea 1",
+          "description": "Living things are both similar to and different from each other and from nonliving things. Students explain how diversity of populations within ecosystems relates to the stability of ecosystems.",
+          "url": "http://www.nysed.gov/curriculum-instruction/science-learning-standards"
+        },
+        {
+          "subject": "Science (Living Environment)",
+          "gradeBand": "9-12",
+          "code": "NY LE Standard 6, Key Idea 6",
+          "description": "Plants and animals depend on each other and their physical environment. Students describe the flow of energy and matter through ecosystems, including the roles of organisms in food webs and the impact of environmental factors on species distribution and behavior.",
+          "url": "http://www.nysed.gov/curriculum-instruction/science-learning-standards"
+        },
+        {
+          "subject": "Science (Living Environment)",
+          "gradeBand": "9-12",
+          "code": "NY LE Standard 7, Key Idea 7",
+          "description": "Human decisions and activities have had a profound impact on the physical and living environment. Students analyze how human activity and natural phenomena affect biodiversity and species populations in various ecosystems.",
+          "url": "http://www.nysed.gov/curriculum-instruction/science-learning-standards"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "question": "how do they move in terms of gait?",
+      "subjects": [
+        "Biology",
+        "Physics/Biomechanics",
+        "Environmental Science"
+      ],
+      "answer": "The small shorebirds in the photo — most likely Sanderlings, a species commonly found on Amelia Island's beaches — move using a distinctive rapid, scurrying bipedal gait. Here's how their movement breaks down:\n\n**Gait Pattern: Run-Stop-Run**\nThese birds use an alternating-leg gait (left-right-left, like humans, rather than hopping like sparrows). Their most characteristic movement is an intermittent \"run-stop-run\" pattern: they sprint in short bursts, pause abruptly to probe the sand with their bills for food, then dash off again. This gives them the famous \"twinkling feet\" appearance.\n\n**Biomechanics**\nBecause their legs are short relative to their body size, their stride length is small. To compensate, they use a very high stride frequency (cadence), moving their legs extremely rapidly. At slower speeds, their gait resembles an inverted-pendulum walk, where the body vaults over the planted leg. At faster speeds, they shift to a true running gait that includes a brief aerial phase — a fraction of a second when both feet are off the ground. Their center of mass stays relatively level during locomotion, which conserves energy and makes movement across flat sand very efficient.\n\n**Ecological Connection**\nThis gait is perfectly adapted to their beach foraging strategy. Sanderlings are famous for \"wave-chasing\" — they sprint down the beach following a receding wave to snatch tiny invertebrates from the wet sand, then quickly run back up to avoid the next incoming wave. Their short, fast steps also help reduce slipping and sinking in loose sand.\n\n**Comparison to Other Birds**\nUnlike wading birds such as herons, which walk slowly and deliberately, or lawn-hopping robins, Sanderlings are cursorial (running-adapted) birds optimized for speed on flat terrain.",
+      "standards": [
+        {
+          "subject": "Science - Living Environment",
+          "gradeBand": "9-12",
+          "code": "NY HS-LS4-4",
+          "description": "Construct an explanation based on evidence for how natural selection leads to adaptation of populations. (Applies here to how the shorebirds' gait and leg anatomy are adaptations shaped by natural selection for efficient foraging in beach environments.)",
+          "url": "http://www.nysed.gov/curriculum-instruction/science-learning-standards"
+        },
+        {
+          "subject": "Science - Living Environment",
+          "gradeBand": "9-12",
+          "code": "NY HS-LS4-2",
+          "description": "Construct an explanation based on evidence that the process of evolution primarily results from four factors: the potential for a species to increase in number, the heritable genetic variation of individuals in a species due to mutation and sexual reproduction, competition for limited resources, and the proliferation of those organisms that are better able to survive and reproduce in the environment.",
+          "url": "http://www.nysed.gov/curriculum-instruction/science-learning-standards"
+        },
+        {
+          "subject": "Science - Physical Setting/Physics",
+          "gradeBand": "9-12",
+          "code": "NY HS-PS2-1",
+          "description": "Analyze data to support the claim that Newton's second law of motion describes the mathematical relationship among the net force on a macroscopic object, its mass, and its acceleration. (Relevant to understanding the biomechanics of locomotion, stride frequency, and energy efficiency in running gaits.)",
+          "url": "http://www.nysed.gov/curriculum-instruction/science-learning-standards"
+        }
+      ]
+    }
+  ]
+}

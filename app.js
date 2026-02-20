@@ -71,14 +71,64 @@ function setupImageUpload() {
   // Lightbox — click preview to enlarge, click lightbox or ESC to close
   const lightbox    = document.getElementById('imageLightbox');
   const lightboxImg = document.getElementById('lightboxImg');
+  const zoomLens    = document.getElementById('zoomLens');
+  const LENS_SIZE   = 220;
+  let zoomLevel     = 2;   // multiplier on original image pixels
+
   preview.addEventListener('click', () => {
     lightboxImg.src = imageDataUrl;
     lightbox.classList.remove('hidden');
   });
-  lightbox.addEventListener('click', () => lightbox.classList.add('hidden'));
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') lightbox.classList.add('hidden');
+  lightbox.addEventListener('click', () => {
+    lightbox.classList.add('hidden');
+    zoomLens.classList.add('hidden');
   });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      lightbox.classList.add('hidden');
+      zoomLens.classList.add('hidden');
+    }
+  });
+
+  // Zoom lens — show on mousemove over the lightbox image
+  lightboxImg.addEventListener('mouseenter', () => {
+    zoomLens.style.backgroundImage = `url(${imageDataUrl})`;
+    zoomLens.classList.remove('hidden');
+    lightboxImg.style.cursor = 'none';
+  });
+  lightboxImg.addEventListener('mouseleave', () => {
+    zoomLens.classList.add('hidden');
+    lightboxImg.style.cursor = '';
+  });
+  lightboxImg.addEventListener('mousemove', e => {
+    const rect = lightboxImg.getBoundingClientRect();
+    // Mouse position within the displayed image
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    // Map displayed coords → original image coords
+    const natW = lightboxImg.naturalWidth;
+    const natH = lightboxImg.naturalHeight;
+    const mx = x * (natW / rect.width);
+    const my = y * (natH / rect.height);
+    // Position lens centered on cursor
+    zoomLens.style.left = (e.clientX - LENS_SIZE / 2) + 'px';
+    zoomLens.style.top  = (e.clientY - LENS_SIZE / 2) + 'px';
+    // Background size = original image dimensions × zoomLevel
+    const bsW = natW * zoomLevel;
+    const bsH = natH * zoomLevel;
+    // Background position: center the original-resolution point in the lens
+    const bpX = mx * zoomLevel - LENS_SIZE / 2;
+    const bpY = my * zoomLevel - LENS_SIZE / 2;
+    zoomLens.style.backgroundSize     = `${bsW}px ${bsH}px`;
+    zoomLens.style.backgroundPosition = `-${bpX}px -${bpY}px`;
+  });
+
+  // Scroll wheel adjusts zoom level (1.5× – 12×)
+  lightbox.addEventListener('wheel', e => {
+    if (zoomLens.classList.contains('hidden')) return;
+    e.preventDefault();
+    zoomLevel = Math.min(8, Math.max(0.5, zoomLevel - e.deltaY * 0.005));
+  }, { passive: false });
 
   dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('over'); });
   dropZone.addEventListener('dragleave', () => dropZone.classList.remove('over'));

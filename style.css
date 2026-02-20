@@ -67,6 +67,14 @@ header {
   text-align: center;
   line-height: 0;
 }
+.header-tagline {
+  line-height: 1;
+  font-size: .78rem;
+  color: var(--muted);
+  font-style: italic;
+  letter-spacing: .04em;
+  padding: .45rem 0 .55rem;
+}
 .header-logo {
   width: 100%;
   max-height: 320px;
@@ -389,6 +397,17 @@ footer {
 .lightbox-caption {
   color: rgba(255,255,255,0.7); font-size: .8rem;
   font-style: italic; text-align: center; letter-spacing: .01em;
+}
+.zoom-lens {
+  position: fixed;
+  width: 220px; height: 220px;
+  border-radius: 50%;
+  border: 3px solid rgba(255,255,255,0.75);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(0,0,0,0.3);
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 1001;
+  cursor: none;
 }
 
 .hidden { display: none !important; }

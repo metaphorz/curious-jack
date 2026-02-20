@@ -1,0 +1,110 @@
+{
+  "imageName": "fairy-fellers-master-stroke",
+  "timestamp": "2026-02-20T18:45:34.599Z",
+  "params": {
+    "state": "Florida",
+    "level": "high",
+    "detail": "medium",
+    "thinking": true,
+    "location": ""
+  },
+  "questions": [
+    {
+      "type": "text",
+      "question": "What am I looking at?",
+      "subjects": [
+        "Art History",
+        "English Literature"
+      ],
+      "answer": "You're looking at **\"The Fairy Feller's Master-Stroke\"** by the English artist **Richard Dadd**, an oil painting created between 1855 and 1864. It is one of the most famous examples of Victorian fairy painting.\n\n**What's happening in the painting:** The scene depicts a dense, miniature fairy world set among oversized grass blades, daisies, and hazelnuts. Dozens of tiny fantastical figures — fairies, gnomes, and costumed characters — are gathered to watch the central figure, the \"Fairy Feller\" (a woodcutter), who is poised to split a large hazelnut with his axe. That moment of anticipation — the \"master-stroke\" — is the focal point. Because the plants tower over the figures, the effect is like peering down into a meadow at insect level.\n\n**The artist's extraordinary backstory:** Richard Dadd painted this work while confined as a patient at Bethlem Royal Hospital (the infamous \"Bedlam\" asylum) after being committed for murdering his father. He worked on the painting obsessively for nine years and never actually finished it. The microscopic, almost compulsive level of detail is part of what makes the painting so mesmerizing and slightly unsettling — your eye constantly discovers new characters and details.\n\n**Literary connections:** The painting draws on fairy mythology that was hugely popular in Victorian England, influenced by works like Shakespeare's *A Midsummer Night's Dream*. Figures resembling Oberon and Titania (the fairy king and queen) can be spotted in the upper portion of the composition. Dadd even wrote a long accompanying poem describing each character in the scene.\n\n**Cultural legacy:** The painting now hangs in the Tate Britain gallery in London. It later inspired the Queen song \"The Fairy Feller's Master-Stroke\" by Freddie Mercury, who was captivated by the painting's intricate detail and dreamlike atmosphere.\n\nThe densely packed, layered composition is intentional — it invites slow, careful study, almost like a visual puzzle, and creates a dreamlike quality that blurs the line between reality and imagination.",
+      "standards": [
+        {
+          "subject": "Visual Arts",
+          "gradeBand": "9-12",
+          "code": "VA.912.C.1.2",
+          "description": "Use critical-thinking skills for various contexts to develop, refine, and reflect on an artistic theme.",
+          "url": "https://www.cpalms.org/Public/PreviewStandard/Preview/4808"
+        },
+        {
+          "subject": "Visual Arts",
+          "gradeBand": "9-12",
+          "code": "VA.912.H.1.2",
+          "description": "Analyze the influence of social, political, and cultural events on artworks or collections of works.",
+          "url": "https://www.cpalms.org/Public/PreviewStandard/Preview/4854"
+        },
+        {
+          "subject": "Visual Arts",
+          "gradeBand": "9-12",
+          "code": "VA.912.H.1.5",
+          "description": "Investigate the use of technology and media design to reflect creative trends in visual culture.",
+          "url": "https://www.cpalms.org/Public/PreviewStandard/Preview/4857"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "question": "Is there a story behind this?",
+      "subjects": [
+        "Art History",
+        "English Literature",
+        "Psychology"
+      ],
+      "answer": "Yes — there is a remarkable and haunting story behind this painting! This is **\"The Fairy Feller's Master-Stroke\"** by **Richard Dadd**, painted between 1855 and 1864. It's one of the most extraordinary works of Victorian art, and its backstory is as compelling as the image itself.\n\n**The Artist's Story:** Richard Dadd was a brilliant young British painter who, during a trip to the Middle East in 1843, began suffering from severe mental illness (likely paranoid schizophrenia). Tragically, he murdered his father — believing him to be the devil in disguise — and was committed to the Bethlem psychiatric hospital (historically known as \"Bedlam\") for the rest of his life. He painted this astonishingly detailed work over approximately nine years while institutionalized, and he never actually finished it.\n\n**What's Happening in the Painting:** The scene depicts a gathering of fairy folk in a dense woodland setting among towering grasses, daisies, nuts, and mushrooms. The viewer is pulled down to a miniature scale, as if you've shrunk to the size of a fairy and are peering through the reeds. At the center, the \"Fairy Feller\" — a tiny woodcutter — is about to deliver a master stroke to split a chestnut with his axe. Surrounding him are dozens of figures from English folklore and Shakespeare, including Oberon and Titania (the fairy king and queen from *A Midsummer Night's Dream*), along with gnomes, fairies, soldiers, dancers, musicians, and other supernatural beings.\n\n**The Literary Connection:** Dadd wrote an accompanying poem explaining each figure in the painting, connecting his work to English fairy tale traditions and Shakespearean mythology. The painting's obsessive, almost hallucinatory level of detail — where every square inch is packed with tiny figures and natural elements — has led many art historians to view it as a window into Dadd's extraordinary but deeply troubled mind.\n\n**Why It Still Matters:** The painting is a powerful example of how art, mental health, folklore, and literature can intersect. The dense, tangled vegetation isn't just decorative — meadow plants, mushrooms, and \"fairy rings\" have long been associated with magic in European folklore, and the wild, boundary-like setting reinforces the idea of stepping between the normal world and an enchanted one. The painting now hangs in the Tate Britain gallery in London. As a fun pop-culture footnote, Queen drummer Roger Taylor named a song after this painting on the band's 1974 album *Queen II*.",
+      "standards": [
+        {
+          "subject": "Visual Arts",
+          "gradeBand": "9-12",
+          "code": "VA.912.H.1.2",
+          "description": "Analyze the capacity of the visual arts to fulfill aesthetic needs through artwork and utilitarian objects.",
+          "url": "https://www.cpalms.org/Public/PreviewStandard/Preview/4740"
+        },
+        {
+          "subject": "Visual Arts",
+          "gradeBand": "9-12",
+          "code": "VA.912.C.1.2",
+          "description": "Use critical-thinking skills for various contexts to develop, refine, and reflect on an artistic theme.",
+          "url": "https://www.cpalms.org/Public/PreviewStandard/Preview/4718"
+        },
+        {
+          "subject": "Visual Arts",
+          "gradeBand": "9-12",
+          "code": "VA.912.H.1.5",
+          "description": "Investigate the use of technology and media design to reflect creative trends in visual culture.",
+          "url": "https://www.cpalms.org/Public/PreviewStandard/Preview/4743"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "question": "Some of the figures are doing things - explain some of them",
+      "subjects": [
+        "Art History",
+        "English Literature"
+      ],
+      "answer": "This painting is Richard Dadd's famous 'The Fairy Feller's Master-Stroke' (1855–1864), created over nine years while Dadd was confined to a psychiatric asylum. It is densely packed with tiny fairy-folk figures from folklore, all set among real-sized grass blades, daisies, and hazelnuts — meaning these characters are incredibly small. Here are some of the key activities the figures are engaged in:\n\n**The Central Figure — The Fairy Feller:** At the center of the composition, the 'Fairy Feller' stands with an axe raised, about to split a large hazelnut. This is the 'master-stroke' referenced in the title. Nearly everyone in the scene appears frozen, watching and waiting for this decisive blow.\n\n**Musicians:** In the upper-left area, figures can be seen blowing trumpets or horns, as if providing a fanfare or announcing a grand event. Historically in art, horn-blowing can signal a celebration, a call to gather, or the start of a procession.\n\n**Courtly and Fairy Figures:** Several elaborately dressed figures — possibly a fairy queen and her attendants — stand watching the feller from the middle-left area. Their fine clothing suggests royalty or nobility within the fairy world.\n\n**A Bearded Patriarch:** Near the center-bottom, a striking bearded figure (sometimes identified as a magician or druid) gazes outward directly at the viewer, standing out among the crowd.\n\n**Workers and Foragers:** Various figures throughout the scene are bending down to pick up round objects from the ground, likely hazelnuts or seed pods. Others handle tall stalks and reeds, suggesting the gathering of natural materials — a reflection of how communities historically collected resources from their environment.\n\n**Transporting Goods:** Near the upper middle of the painting, a cart or wagon with a wheel is visible, with figures nearby. This implies the movement of harvested materials, depicting the logistical side of a small working community.\n\n**Dancing and Celebrating:** Small groups on the hillside appear to be dancing or socializing, adding a festive, communal energy to the scene.\n\nWhat makes this painting remarkable is Dadd's obsessive, microscopic level of detail. He layered dozens of figures among natural elements to create a scene that feels both magical and claustrophobic, giving viewers the sense of peering into a hidden miniature world teeming with life and activity.",
+      "standards": [
+        {
+          "subject": "Visual Arts",
+          "gradeBand": "9-12",
+          "code": "VA.912.C.1.2",
+          "description": "Use critical-thinking skills for various contexts to develop, refine, and reflect on an artistic theme.",
+          "url": "https://www.cpalms.org/Public/PreviewStandard/Preview/4808"
+        },
+        {
+          "subject": "Visual Arts",
+          "gradeBand": "9-12",
+          "code": "VA.912.H.1.2",
+          "description": "Analyze the impact of a single cultural or political event on an artist's work or the evolution of an art form, style, or movement.",
+          "url": "https://www.cpalms.org/Public/PreviewStandard/Preview/4849"
+        },
+        {
+          "subject": "Visual Arts",
+          "gradeBand": "9-12",
+          "code": "VA.912.C.3.1",
+          "description": "Use descriptive terms and varied approaches in art analysis to explain the meaning or purpose of an artwork.",
+          "url": "https://www.cpalms.org/Public/PreviewStandard/Preview/4818"
+        }
+      ]
+    }
+  ]
+}
