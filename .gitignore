@@ -1,6 +1,8 @@
 node_modules/
 venv/
 .server.pid
+.env
+.env.local
 .DS_Store
 .playwright-mcp/
 *.log
