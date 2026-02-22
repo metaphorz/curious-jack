@@ -4,6 +4,8 @@ let imageDataUrl = null;
 let imageName = null;
 let apiKey = null;
 let bannerDataUrl = null;
+let questionCounter = 0;
+let conversationHistory = [];
 
 // -----------------------------------------------------------------------
 // Init
@@ -60,10 +62,17 @@ function setupImageUpload() {
     const reader = new FileReader();
     reader.onload = e => {
       imageDataUrl = e.target.result;
+      questionCounter = 0;
+      conversationHistory = [];
       preview.src = imageDataUrl;
       preview.classList.remove('hidden');
       dropZone.classList.add('hidden');
       document.getElementById('printImage').src = imageDataUrl;
+      // Clear previous results when a new image is loaded
+      const resultsBody = document.getElementById('resultsBody');
+      if (resultsBody) resultsBody.innerHTML = '';
+      const results = document.getElementById('results');
+      if (results) results.classList.add('hidden');
     };
     reader.readAsDataURL(file);
   }
@@ -207,11 +216,10 @@ function setupSubmit() {
     const progressBar   = document.getElementById('progressBar');
     progressArea.classList.remove('hidden');
 
-    // Show results section
+    // Show results section (don't clear existing cards — append to them)
     const results = document.getElementById('results');
     const body    = document.getElementById('resultsBody');
     results.classList.remove('hidden');
-    body.innerHTML = '';
     document.getElementById('exportRow').classList.add('hidden');
 
     // Store params now so buildStandardsHtml can read them during rendering
@@ -226,19 +234,22 @@ function setupSubmit() {
       progressBar.style.width   = `${((i) / questions.length) * 100}%`;
 
       // Insert skeleton card
-      const cardEl = insertSkeletonCard(body, i + 1, q);
+      const cardNum = ++questionCounter;
+      const cardEl = insertSkeletonCard(body, cardNum, q);
 
       try {
         const answer = await queryServer(q, params);
         allAnswers.push(answer);
         if (answer.type === 'image-generation') {
-          renderImageCard(cardEl, i + 1, answer);
+          renderImageCard(cardEl, cardNum, answer);
         } else {
-          renderAnswerCard(cardEl, i + 1, answer);
+          renderAnswerCard(cardEl, cardNum, answer);
         }
+        conversationHistory.push({ question: q, answer: answer.answer || '' });
       } catch (err) {
         renderErrorCard(cardEl, q, err.message);
         allAnswers.push({ question: q, subjects: [], answer: `Error: ${err.message}`, standards: [] });
+        conversationHistory.push({ question: q, answer: `Error: ${err.message}` });
       }
 
       progressBar.style.width = `${((i + 1) / questions.length) * 100}%`;
@@ -261,7 +272,7 @@ function setupSubmit() {
 // Query the server for one question
 // -----------------------------------------------------------------------
 async function queryServer(question, params) {
-  const body = { image: imageDataUrl, question, params };
+  const body = { image: imageDataUrl, question, params, history: conversationHistory };
   if (apiKey) body.apiKey = apiKey;
 
   const res = await fetch('/api/query', {
@@ -375,7 +386,19 @@ function escHtml(str) {
 // -----------------------------------------------------------------------
 function setupExport() {
   document.getElementById('exportMd').addEventListener('click', exportMarkdown);
-  document.getElementById('exportPdf').addEventListener('click', () => window.print());
+  document.getElementById('exportPdf').addEventListener('click', exportPdf);
+}
+
+function exportPdf() {
+  const el = document.getElementById('resultsBody');
+  if (!el || !el.children.length) { alert('No results to export yet.'); return; }
+  html2pdf().set({
+    margin: 10,
+    filename: 'curiosity-report.pdf',
+    image: { type: 'jpeg', quality: 0.97 },
+    html2canvas: { scale: 2, useCORS: true },
+    jsPDF: { unit: 'mm', format: 'letter', orientation: 'portrait' },
+  }).from(el).save();
 }
 
 // -----------------------------------------------------------------------
@@ -431,7 +454,7 @@ async function exportMarkdown() {
 
   md += `# Curious Jack\n\n`;
   md += `*fostered by Paul Fishwick and Claude Code*\n\n`;
-  if (imageDataUrl) md += `![Subject image](${imageDataUrl})\n\n`;
+  if (imageName) md += `*Image: ${imageName}*\n\n`;
   md += `---\n\n`;
   md += `**Level:** ${levelLabel}  \n`;
   md += `**Detail:** ${detailLabel}  \n`;
@@ -462,11 +485,11 @@ async function exportMarkdown() {
     md += '---\n\n';
   });
 
-  const res = await fetch('/api/export-markdown', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ content: md, folder: window._sessionFolder || null }),
-  });
-  const { token } = await res.json();
-  window.location.href = `/api/export/${token}/curiosity-report.md`;
+  const blob = new Blob([md], { type: 'text/plain' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'curiosity-report.md';
+  a.click();
+  URL.revokeObjectURL(url);
 }

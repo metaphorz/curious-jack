@@ -76,15 +76,15 @@ app.get('/config', (req, res) => {
 // Body: { image: <base64 dataURL>, question: string, params: { state, level, detail } }
 // -------------------------------------------------------------------
 app.post('/api/query', async (req, res) => {
-  const { image, question, params, apiKey } = req.body;
+  const { image, question, params, apiKey, history } = req.body;
   const key = OPENROUTER_API_KEY || apiKey;
 
   if (!key) return res.status(401).json({ error: 'No OpenRouter API key available.' });
   if (!question || !image) return res.status(400).json({ error: 'image and question are required.' });
 
   try {
-    const workerResults = await callWorkers(key, image, question, params);
-    const answer = await callCoordinator(key, image, question, params, workerResults);
+    const workerResults = await callWorkers(key, image, question, params, history);
+    const answer = await callCoordinator(key, image, question, params, workerResults, history);
     if (answer.type === 'image-generation') {
       const result = await handleImageGeneration(key, image, answer.imagePrompt || question);
       res.json(result);
@@ -162,8 +162,8 @@ async function handleImageGeneration(key, inputImage, question) {
 // -------------------------------------------------------------------
 // Call all 3 workers in parallel via OpenRouter
 // -------------------------------------------------------------------
-async function callWorkers(key, image, question, params) {
-  const workerPrompt = buildWorkerPrompt(question, params);
+async function callWorkers(key, image, question, params, history) {
+  const workerPrompt = buildWorkerPrompt(question, params, history);
   const imageContent = buildImageContent(image);
   const thinking = !!params.thinking;
 
@@ -183,8 +183,8 @@ async function callWorkers(key, image, question, params) {
 // -------------------------------------------------------------------
 // Call coordinator with worker results
 // -------------------------------------------------------------------
-async function callCoordinator(key, image, question, params, workerResults) {
-  const prompt = buildCoordinatorPrompt(question, params, workerResults);
+async function callCoordinator(key, image, question, params, workerResults, history) {
+  const prompt = buildCoordinatorPrompt(question, params, workerResults, history);
   const imageContent = buildImageContent(image);
   const raw = await callOpenRouter(key, MODELS.coordinator, prompt, imageContent, !!params.thinking);
   return parseCoordinatorResponse(raw, question);
@@ -260,7 +260,7 @@ function buildImageContent(dataUrl) {
 // -------------------------------------------------------------------
 // Worker prompt
 // -------------------------------------------------------------------
-function buildWorkerPrompt(question, params) {
+function buildWorkerPrompt(question, params, history) {
   const { state = 'Florida', level = 'high', detail = 'medium', location = '', context = '' } = params || {};
   const detailGuide = {
     low:    'one primary subject, concise answer',
@@ -273,13 +273,16 @@ function buildWorkerPrompt(question, params) {
     ? `\nContext (guides your answer):\n${context}${lensBlock ? `\n\nLens reference material:\n${lensBlock}` : ''}\n`
     : '';
 
+  const historySection = (history && history.length > 0)
+    ? '\nPrior conversation:\n' + history.map((h, i) => `Q${i + 1}: ${h.question}\nA: ${h.answer}`).join('\n') + '\n'
+    : '';
+
   return `You are an educational expert analyzing the image above to answer a student question.
 
 Parameters:
 - State: ${state}
 - Level: ${level} school
-- Detail: ${detail} (${detailGuide})${location ? `\n- Location/Source: ${location}` : ''}${contextSection}
-
+- Detail: ${detail} (${detailGuide})${location ? `\n- Location/Source: ${location}` : ''}${contextSection}${historySection}
 Question: ${question}
 
 Respond with:
@@ -323,7 +326,7 @@ function buildStandardsInstruction(state) {
 // -------------------------------------------------------------------
 // Coordinator synthesis prompt
 // -------------------------------------------------------------------
-function buildCoordinatorPrompt(question, params, workerResults) {
+function buildCoordinatorPrompt(question, params, workerResults, history) {
   const { state = 'Florida', level = 'high', detail = 'medium', location = '', context = '' } = params || {};
   const workerSection = workerResults
     .map(w => `=== ${w.name.toUpperCase()} ===\n${w.text}`)
@@ -334,12 +337,16 @@ function buildCoordinatorPrompt(question, params, workerResults) {
     ? `\nContext (must guide your final answer):\n${context}${lensBlock ? `\n\nLens reference material:\n${lensBlock}` : ''}`
     : '';
 
+  const historySection = (history && history.length > 0)
+    ? '\nPrior conversation:\n' + history.map((h, i) => `Q${i + 1}: ${h.question}\nA: ${h.answer}`).join('\n')
+    : '';
+
   return `You are a coordinator synthesizing educational answers from three AI workers.
 
 Original question: ${question}
 Level: ${level} school
 Detail: ${detail}
-State: ${state}${location ? `\nLocation/Source: ${location}` : ''}${contextSection}
+State: ${state}${location ? `\nLocation/Source: ${location}` : ''}${contextSection}${historySection}
 
 Worker responses:
 ${workerSection}
