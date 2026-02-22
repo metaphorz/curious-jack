@@ -27,7 +27,9 @@ const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY || '';
 // -------------------------------------------------------------------
 // Load lens definitions from ~/lenses/ on startup
 // -------------------------------------------------------------------
-const LENSES_DIR = path.join(require('os').homedir(), 'lenses');
+const LENSES_DIR = fs.existsSync(path.join(__dirname, 'lenses'))
+  ? path.join(__dirname, 'lenses')
+  : path.join(require('os').homedir(), 'lenses');
 const LENS_FILES = {
   lamesh:     'lamesh.md',
   computing:  'computing.md',
