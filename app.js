@@ -171,7 +171,8 @@ function parseQuestions(raw) {
 // -----------------------------------------------------------------------
 function setupSubmit() {
   document.getElementById('submitBtn').addEventListener('click', async () => {
-    const raw = document.getElementById('questionsInput').value;
+    const raw     = document.getElementById('questionsInput').value;
+    const context = document.getElementById('contextInput').value.trim();
     const questions = parseQuestions(raw);
 
     if (!imageDataUrl) { alert('Please upload an image first.'); return; }
@@ -183,6 +184,7 @@ function setupSubmit() {
       detail:   document.getElementById('paramDetail').value,
       thinking: document.getElementById('paramThinking').checked,
       location: document.getElementById('imageLocation').value.trim(),
+      context,
     };
 
     // Populate print params block
@@ -404,7 +406,10 @@ async function saveSession(results, params) {
       body: JSON.stringify(body),
     });
     const data = await res.json();
-    if (data.saved) console.log(`Session saved to ${data.folder}`);
+    if (data.saved) {
+      console.log(`Session saved to ${data.folder}`);
+      window._sessionFolder = data.folder;
+    }
   } catch (err) {
     console.warn('Session save failed:', err.message);
   }
@@ -460,7 +465,7 @@ async function exportMarkdown() {
   const res = await fetch('/api/export-markdown', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ content: md }),
+    body: JSON.stringify({ content: md, folder: window._sessionFolder || null }),
   });
   const { token } = await res.json();
   window.location.href = `/api/export/${token}/curiosity-report.md`;

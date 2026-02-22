@@ -24,6 +24,36 @@ const PORT = 3456;
 
 const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY || '';
 
+// -------------------------------------------------------------------
+// Load lens definitions from ~/lenses/ on startup
+// -------------------------------------------------------------------
+const LENSES_DIR = path.join(require('os').homedir(), 'lenses');
+const LENS_FILES = {
+  lamesh:     'lamesh.md',
+  computing:  'computing.md',
+  statistics: 'statistics.md',
+};
+const lensContent = {};
+for (const [key, file] of Object.entries(LENS_FILES)) {
+  const p = path.join(LENSES_DIR, file);
+  if (fs.existsSync(p)) {
+    lensContent[key] = fs.readFileSync(p, 'utf8').trim();
+    console.log(`Lens loaded: ${key}`);
+  }
+}
+
+// Return lens content relevant to any keywords found in the context string
+function resolveLensContext(context) {
+  if (!context) return '';
+  const lower = context.toLowerCase();
+  const matched = [];
+  if (/\bla\s*mesh\b/.test(lower))                matched.push(lensContent.lamesh);
+  if (/\bsteam?\b/.test(lower) && lensContent.lamesh) matched.push(lensContent.lamesh);
+  if (/\bcomputing\b|computer science/.test(lower)) matched.push(lensContent.computing);
+  if (/\bstatistics?\b|statistical/.test(lower))   matched.push(lensContent.statistics);
+  return matched.filter(Boolean).join('\n\n---\n\n');
+}
+
 const MODELS = {
   gemini:      'google/gemini-3.1-pro-preview',
   openai:      'openai/gpt-5.2',
@@ -229,19 +259,24 @@ function buildImageContent(dataUrl) {
 // Worker prompt
 // -------------------------------------------------------------------
 function buildWorkerPrompt(question, params) {
-  const { state = 'Florida', level = 'high', detail = 'medium', location = '' } = params || {};
+  const { state = 'Florida', level = 'high', detail = 'medium', location = '', context = '' } = params || {};
   const detailGuide = {
     low:    'one primary subject, concise answer',
     medium: 'two or three subjects, moderate depth',
     high:   'four or more subjects, comprehensive depth across disciplines',
   }[detail] || 'moderate depth';
 
+  const lensBlock = resolveLensContext(context);
+  const contextSection = context
+    ? `\nContext (guides your answer):\n${context}${lensBlock ? `\n\nLens reference material:\n${lensBlock}` : ''}\n`
+    : '';
+
   return `You are an educational expert analyzing the image above to answer a student question.
 
 Parameters:
 - State: ${state}
 - Level: ${level} school
-- Detail: ${detail} (${detailGuide})${location ? `\n- Location/Source: ${location}` : ''}
+- Detail: ${detail} (${detailGuide})${location ? `\n- Location/Source: ${location}` : ''}${contextSection}
 
 Question: ${question}
 
@@ -287,17 +322,22 @@ function buildStandardsInstruction(state) {
 // Coordinator synthesis prompt
 // -------------------------------------------------------------------
 function buildCoordinatorPrompt(question, params, workerResults) {
-  const { state = 'Florida', level = 'high', detail = 'medium', location = '' } = params || {};
+  const { state = 'Florida', level = 'high', detail = 'medium', location = '', context = '' } = params || {};
   const workerSection = workerResults
     .map(w => `=== ${w.name.toUpperCase()} ===\n${w.text}`)
     .join('\n\n');
+
+  const lensBlock = resolveLensContext(context);
+  const contextSection = context
+    ? `\nContext (must guide your final answer):\n${context}${lensBlock ? `\n\nLens reference material:\n${lensBlock}` : ''}`
+    : '';
 
   return `You are a coordinator synthesizing educational answers from three AI workers.
 
 Original question: ${question}
 Level: ${level} school
 Detail: ${detail}
-State: ${state}${location ? `\nLocation/Source: ${location}` : ''}
+State: ${state}${location ? `\nLocation/Source: ${location}` : ''}${contextSection}
 
 Worker responses:
 ${workerSection}
@@ -426,8 +466,18 @@ app.post('/api/save-session', (req, res) => {
 const exportTokens = new Map();
 
 app.post('/api/export-markdown', (req, res) => {
-  const { content } = req.body;
+  const { content, folder } = req.body;
   if (!content) return res.status(400).json({ error: 'content is required.' });
+
+  // Save report.md into the session folder if available
+  if (folder) {
+    const sessionDir = path.join(__dirname, folder);
+    if (fs.existsSync(sessionDir)) {
+      fs.writeFileSync(path.join(sessionDir, 'report.md'), content);
+      console.log(`Markdown saved to ${folder}/report.md`);
+    }
+  }
+
   const token = require('crypto').randomUUID();
   exportTokens.set(token, content);
   setTimeout(() => exportTokens.delete(token), 60000); // clean up after 60s

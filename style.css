@@ -147,6 +147,15 @@ main { flex: 1; max-width: 1080px; margin: 0 auto; padding: 1.5rem 1rem 2rem; wi
 .drop-zone.over { border-color: var(--primary); background: #fdf0eb; }
 .drop-zone.hidden { display: none; }
 
+/* ---- Context textarea ---- */
+#contextInput {
+  width: 100%; min-height: 58px; resize: vertical;
+  border: 1px dashed var(--border); border-radius: var(--radius);
+  padding: .6rem .9rem; font-size: .85rem; font-family: inherit;
+  color: var(--muted); background: var(--surface2); line-height: 1.55;
+}
+#contextInput:focus { outline: 2px solid var(--primary); border-color: transparent; color: var(--text); }
+
 /* ---- Questions textarea ---- */
 #questionsInput {
   width: 100%; min-height: 190px; resize: vertical;
