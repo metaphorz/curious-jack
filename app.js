@@ -246,6 +246,12 @@ function setupSubmit() {
           renderAnswerCard(cardEl, cardNum, answer);
         }
         conversationHistory.push({ question: q, answer: answer.answer || '' });
+        // Auto-play TTS if Read Aloud is checked
+        if (document.getElementById('paramVoiceEnabled').checked && answer.answer) {
+          progressLabel.textContent = `Processing audio for question ${i + 1}…`;
+          const ttsBtn = cardEl.querySelector('.tts-btn');
+          if (ttsBtn) await playTts(ttsBtn, answer.answer);
+        }
       } catch (err) {
         renderErrorCard(cardEl, q, err.message);
         allAnswers.push({ question: q, subjects: [], answer: `Error: ${err.message}`, standards: [] });
@@ -306,20 +312,51 @@ function insertSkeletonCard(container, num, question) {
 }
 
 function renderAnswerCard(cardEl, num, answer) {
-  const subjectTags = (answer.subjects || [])
-    .map(s => `<a class="subject-tag" href="https://en.wikipedia.org/wiki/${encodeURIComponent(s)}" target="_blank" rel="noopener">${escHtml(s)}</a>`)
-    .join('');
-
   const standardsHtml = buildStandardsHtml(answer.standards || []);
+  const sanitizedAnswer = DOMPurify.sanitize(marked.parse(answer.answer || ''));
 
   cardEl.className = 'answer-card';
-  cardEl.innerHTML = `
-    <div class="q-number">Question ${num}</div>
-    <div class="q-text">${escHtml(answer.question || '')}</div>
-    <div class="subjects-row">${subjectTags}</div>
-    <div class="answer-text">${DOMPurify.sanitize(marked.parse(answer.answer || ''))}</div>
-    ${standardsHtml}
-  `;
+  cardEl.textContent = '';
+
+  const qNum = document.createElement('div');
+  qNum.className = 'q-number';
+  qNum.textContent = 'Question ' + num + ' ';
+  const ttsBtn = document.createElement('button');
+  ttsBtn.className = 'tts-btn';
+  ttsBtn.title = 'Read aloud';
+  ttsBtn.textContent = '\u{1F50A}';
+  ttsBtn.addEventListener('click', () => playTts(ttsBtn, answer.answer || ''));
+  qNum.appendChild(ttsBtn);
+  cardEl.appendChild(qNum);
+
+  const qText = document.createElement('div');
+  qText.className = 'q-text';
+  qText.textContent = answer.question || '';
+  cardEl.appendChild(qText);
+
+  const subjRow = document.createElement('div');
+  subjRow.className = 'subjects-row';
+  (answer.subjects || []).forEach(s => {
+    const a = document.createElement('a');
+    a.className = 'subject-tag';
+    a.href = 'https://en.wikipedia.org/wiki/' + encodeURIComponent(s);
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.textContent = s;
+    subjRow.appendChild(a);
+  });
+  cardEl.appendChild(subjRow);
+
+  const ansDiv = document.createElement('div');
+  ansDiv.className = 'answer-text';
+  ansDiv.innerHTML = sanitizedAnswer;
+  cardEl.appendChild(ansDiv);
+
+  if (standardsHtml) {
+    const stdWrapper = document.createElement('div');
+    stdWrapper.innerHTML = DOMPurify.sanitize(standardsHtml);
+    while (stdWrapper.firstChild) cardEl.appendChild(stdWrapper.firstChild);
+  }
 }
 
 function renderImageCard(cardEl, num, answer) {
@@ -382,6 +419,73 @@ function escHtml(str) {
 }
 
 // -----------------------------------------------------------------------
+// TTS — strip markdown and play audio
+// -----------------------------------------------------------------------
+function stripMarkdown(md) {
+  return md
+    .replace(/#{1,6}\s+/g, '')           // headings
+    .replace(/\*\*(.+?)\*\*/g, '$1')     // bold
+    .replace(/\*(.+?)\*/g, '$1')         // italic
+    .replace(/__(.+?)__/g, '$1')
+    .replace(/_(.+?)_/g, '$1')
+    .replace(/`(.+?)`/g, '$1')           // inline code
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // links
+    .replace(/!\[([^\]]*)\]\([^)]+\)/g, '$1') // images
+    .replace(/^[-*+]\s+/gm, '')          // list bullets
+    .replace(/^\d+\.\s+/gm, '')          // numbered lists
+    .replace(/^>\s+/gm, '')              // blockquotes
+    .replace(/---+/g, '')                // horizontal rules
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+}
+
+async function playTts(button, text) {
+  if (button.dataset.playing === 'true') return;
+  button.dataset.playing = 'true';
+  button.textContent = '⏳';
+
+  try {
+    const voice = document.getElementById('paramVoice').value;
+    const body = { text: stripMarkdown(text).slice(0, 4000), voice };
+    if (apiKey) body.apiKey = apiKey;
+
+    const res = await fetch('/api/tts', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ error: `HTTP ${res.status}` }));
+      throw new Error(err.error || `HTTP ${res.status}`);
+    }
+
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+    const audio = new Audio(url);
+    button.textContent = '⏹';
+
+    audio.onended = () => {
+      button.textContent = '🔊';
+      button.dataset.playing = 'false';
+      URL.revokeObjectURL(url);
+    };
+    audio.onerror = () => {
+      button.textContent = '🔊';
+      button.dataset.playing = 'false';
+      URL.revokeObjectURL(url);
+    };
+
+    audio.play();
+  } catch (err) {
+    console.error('TTS error:', err.message);
+    alert('TTS failed: ' + err.message);
+    button.textContent = '🔊';
+    button.dataset.playing = 'false';
+  }
+}
+
+// -----------------------------------------------------------------------
 // Export
 // -----------------------------------------------------------------------
 function setupExport() {
@@ -390,15 +494,57 @@ function setupExport() {
 }
 
 function exportPdf() {
-  const el = document.getElementById('resultsBody');
-  if (!el || !el.children.length) { alert('No results to export yet.'); return; }
-  html2pdf().set({
-    margin: 10,
-    filename: 'curiosity-report.pdf',
-    image: { type: 'jpeg', quality: 0.97 },
-    html2canvas: { scale: 2, useCORS: true },
-    jsPDF: { unit: 'mm', format: 'letter', orientation: 'portrait' },
-  }).from(el).save();
+  const resultsBody = document.getElementById('resultsBody');
+  if (!resultsBody || !resultsBody.children.length) { alert('No results to export yet.'); return; }
+
+  const header = document.getElementById('printImageHeader');
+  const css = document.querySelector('link[rel="stylesheet"]').href;
+
+  // Build standalone HTML for print
+  const html = `<!DOCTYPE html><html><head><meta charset="UTF-8">
+    <title>Curious Jack Report</title>
+    <link rel="stylesheet" href="${css}">
+    <style>
+      body { background: #fff; font-family: 'Söhne', system-ui, sans-serif; color: #1a1209; padding: 20px; }
+      .print-image-header { display: block !important; text-align: center; margin-bottom: 2rem; }
+      .print-banner { width: 100%; max-height: 150px; object-fit: contain; display: block; margin: 0 auto .5rem; }
+      .print-title { font-size: 2rem; font-weight: 700; margin-bottom: .3rem; }
+      .print-byline { font-size: .9rem; color: #555; font-style: italic; margin-bottom: 1rem; }
+      .print-params { font-size: .85rem; color: #333; margin: 1rem 0; border-top: 1px solid #ccc; padding-top: .75rem; }
+      .print-params span { display: inline-block; margin-right: 1.5rem; }
+      .print-params .param-label { font-weight: 700; text-transform: uppercase; font-size: .72rem; letter-spacing: .06em; color: #888; display: block; }
+      #printImage { max-width: 100%; max-height: 400px; object-fit: contain; border: 1px solid #ccc; border-radius: 6px; }
+      .answer-card { background: #fff; border: 1px solid #e5ddd4; border-radius: 12px; padding: 1.5rem 1.75rem; margin-bottom: 1.25rem; break-inside: avoid; }
+      .answer-card .q-number { font-size: .7rem; font-weight: 700; color: #c96442; text-transform: uppercase; letter-spacing: .1em; margin-bottom: .4rem; }
+      .answer-card .q-text { font-size: 1.05rem; font-weight: 600; margin-bottom: .9rem; }
+      .subjects-row { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1rem; }
+      .subject-tag { background: #fde8dc; color: #9a3412; border-radius: 99px; padding: .18rem .7rem; font-size: .75rem; font-weight: 600; text-decoration: none; }
+      .answer-text { font-size: .95rem; line-height: 1.75; }
+      .answer-text p { margin-bottom: .75rem; }
+      .answer-text ul, .answer-text ol { margin: .5rem 0 .75rem 1.4rem; }
+      .answer-text li { margin-bottom: .3rem; }
+      .standards-section { margin-top: 1.35rem; border-top: 1px solid #e5ddd4; padding-top: 1rem; }
+      .standards-section h4 { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .09em; color: #7a6a5a; margin-bottom: .7rem; }
+      .standard-item { font-size: .85rem; line-height: 1.6; margin-bottom: .6rem; }
+      .standard-item .std-code { font-weight: 700; color: #c96442; }
+      .tts-btn { display: none; }
+      @media print { body { margin: 0; } .answer-card { box-shadow: none; } }
+    </style>
+  </head><body>
+    ${header.outerHTML.replace('class="print-image-header"', 'class="print-image-header" style="display:block"')}
+    ${resultsBody.outerHTML}
+  </body></html>`;
+
+  const old = document.getElementById('pdf-print-frame');
+  if (old) old.remove();
+  const iframe = document.createElement('iframe');
+  iframe.id = 'pdf-print-frame';
+  iframe.style.cssText = 'position:fixed;left:-9999px;width:0;height:0';
+  iframe.srcdoc = html;
+  document.body.appendChild(iframe);
+  iframe.onload = () => {
+    try { iframe.contentWindow.print(); } catch { alert('Press Cmd+P to save as PDF'); }
+  };
 }
 
 // -----------------------------------------------------------------------
@@ -438,6 +584,23 @@ async function saveSession(results, params) {
   }
 }
 
+function shrinkImage(dataUrl, maxWidth) {
+  return new Promise(resolve => {
+    const img = new Image();
+    img.onload = () => {
+      const scale = Math.min(1, maxWidth / img.width);
+      const w = Math.round(img.width * scale);
+      const h = Math.round(img.height * scale);
+      const c = document.createElement('canvas');
+      c.width = w; c.height = h;
+      c.getContext('2d').drawImage(img, 0, 0, w, h);
+      resolve(c.toDataURL('image/jpeg', 0.4));
+    };
+    img.onerror = () => resolve(dataUrl);
+    img.src = dataUrl;
+  });
+}
+
 async function exportMarkdown() {
   const results = window._curiosityResults;
   if (!results || results.length === 0) { alert('No results to export yet.'); return; }
@@ -454,7 +617,10 @@ async function exportMarkdown() {
 
   md += `# Curious Jack\n\n`;
   md += `*fostered by Paul Fishwick and Claude Code*\n\n`;
-  if (imageName) md += `*Image: ${imageName}*\n\n`;
+  if (imageDataUrl) {
+    const thumbUrl = await shrinkImage(imageDataUrl, 400);
+    md += `<img src="${thumbUrl}" alt="${imageName || 'Image'}" width="400" />\n\n`;
+  }
   md += `---\n\n`;
   md += `**Level:** ${levelLabel}  \n`;
   md += `**Detail:** ${detailLabel}  \n`;

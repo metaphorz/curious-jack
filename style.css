@@ -243,6 +243,15 @@ main { flex: 1; max-width: 1080px; margin: 0 auto; padding: 1.5rem 1rem 2rem; wi
   font-size: 1.05rem; font-weight: 600; margin-bottom: .9rem; line-height: 1.4;
 }
 
+/* ---- TTS button ---- */
+.tts-btn {
+  background: none; border: none; cursor: pointer;
+  font-size: .85rem; padding: .1rem .3rem;
+  border-radius: 4px; vertical-align: middle;
+  transition: background .15s;
+}
+.tts-btn:hover { background: var(--tag-bg); }
+
 .subjects-row { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1rem; }
 .subject-tag {
   background: var(--tag-bg); color: var(--tag-text);

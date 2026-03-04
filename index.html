@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; media-src 'self' blob:;">
   <title>Curious Jack</title>
+  <link rel="icon" href="banner/curiousjack.jpg" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -102,6 +103,21 @@
         </select>
       </label>
       <label class="thinking-label">
+        <input type="checkbox" id="paramVoiceEnabled" />
+        Read Aloud
+      </label>
+      <label>
+        Voice
+        <select id="paramVoice">
+          <option value="alloy" selected>Alloy</option>
+          <option value="echo">Echo</option>
+          <option value="fable">Fable</option>
+          <option value="onyx">Onyx</option>
+          <option value="nova">Nova</option>
+          <option value="shimmer">Shimmer</option>
+        </select>
+      </label>
+      <label class="thinking-label">
         <input type="checkbox" id="paramThinking" />
         Extended Thinking Mode
       </label>
@@ -127,7 +143,7 @@
       <!-- Questions -->
       <div class="card" id="questionsCard">
         <h2>Questions</h2>
-        <textarea id="contextInput" placeholder="Context (optional) — guides all answers, e.g. Use a LAMESH lens. Use a STEM lens. Focus on computing and statistics."></textarea>
+        <textarea id="contextInput" placeholder="Context (optional) — guides all answers, e.g. Use an Art and Math lens, LAMESH lens, or STEM lens. Focus on computing and statistics. Make descriptions short."></textarea>
         <textarea id="questionsInput" placeholder="Type or paste your questions here, one per line..."></textarea>
         <div class="questions-file-row">
           <label class="file-btn">

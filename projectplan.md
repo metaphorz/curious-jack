@@ -172,3 +172,12 @@ Tested with Sánchez Cotán's 1602 still life painting and two questions:
 - Both questions answered correctly with subject tags, comprehensive answers, and accurate Florida CPALMS standard references
 - Progressive rendering worked: Q1 appeared before Q2 started processing
 - Export Markdown and Export PDF buttons functional
+
+### March 2026 Update — TTS + Export Fixes
+
+**Added:**
+- **Text-to-Speech**: `/api/tts` endpoint using `openai/gpt-4o-mini-audio-preview` via OpenRouter. Speaker button on each answer card. Voice selector (alloy/echo/fable/onyx/nova/shimmer) in params bar.
+
+**Fixed:**
+- **Markdown export**: Now embeds the uploaded image as a base64 `![Image](data:...)` instead of just the filename text.
+- **PDF export**: Now wraps `#printImageHeader` (banner, title, byline, params, image) + `#resultsBody` in a temporary container for html2pdf capture, so the PDF includes the image header instead of being blank.
